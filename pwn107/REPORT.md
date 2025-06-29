@@ -1,5 +1,11 @@
 # pwn107
 
+- [Binary Analysis](#binary-analysis)
+- [Exploit the Format String Vulnerability](#exploit-the-format-string-vulnerability)
+- [Exploit the Buffer Overflow Vulnerability](#exploit-the-buffer-overflow-vulnerability)
+- [Local Exploitation](#local-exploitation)
+- [Remote Exploitation](#remote-exploitation)
+
 ```text
 
 The challenge is running on port 9007
@@ -211,7 +217,7 @@ So, what to do?
 1. [Exploit the Format String Vulnerability](#exploit-the-format-string-vulnerability) to perform a memory leak.
 2. [Exploit the Buffer Overflow Vulnerability](#exploit-the-buffer-overflow-vulnerability) to hijack the program execution.
 
-### Exploit The Format String Vulnerability
+## Exploit The Format String Vulnerability
 ---
 - [Leak the canary](#leak-the-canary)
 - [Leak the virtual address](#leak-the-virtual-address)
